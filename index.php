@@ -10,12 +10,12 @@ if (isset($_SESSION['username'])){
 }
 if (isset($_POST['submit'])){
     $email = $_POST['email'];
-    $password = md5($_POST['password']); #md5 will convert password to strings in the database
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password='$password'";
+    $passwords = md5($_POST['passwords']); #md5 will convert password to strings in the database
+    $sql = "SELECT * FROM users WHERE email = '$email' AND passwords ='$passwords'";
     $result=mysqli_query($conn, $sql);
 
-    if($result->num_rows >0){
-        $row = mysql_fetch_assoc($result);
+    if($result->num_rows > 0){
+        $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
         header("Location: welcome.php");
     }  else{
@@ -45,7 +45,7 @@ if (isset($_POST['submit'])){
                 <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+                <input type="password" placeholder="Password" name="passwords" value="<?php echo $_POST['passwords']; ?>" required>
             </div>
             <div class="input-group">
                 <button name="submit" class="btn"> Login </button>

@@ -11,27 +11,27 @@ if (isset($_SESSION['username'])){
 if (isset($_POST['submit'])){
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
-    $lname = $_POST['username'];
+    #$username = $_POST['username'];
     $email = $_POST['email'];
-    $password = md5($_POST['password']); #md5 will convert password to strings in the database
+    $passwords = md5($_POST['passwords']); #md5 will convert password to strings in the database
     $cpassword = md5($_POST['cpassword']);
 
-    if ($password==$cpassword){
+    if ($passwords==$cpassword){
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $result=mysqli_query($conn, $sql);
 
         if (!$result->num_rows > 0){ 
-            $sql = "INSERT INTO users (fname, lname, username, email, password) 
-                    VALUES ('$fname', '$lname', '$username', '$email', '$password')";
+            $sql = "INSERT INTO users (fname, lname, username, email, passwords) 
+                    VALUES ('$fname', '$lname', '$username', '$email', '$passwords')";
                     $result=mysqli_query($conn, $sql);
 
             if ($result){
                 echo "<script>alert('user registration completed.') </script>";
                 $fname="";
                 $lname="";
-                $username="";
+               # $username="";
                 $email="";
-                $_POST['password']="";
+                $_POST['passwords']="";
                 $_POST['cpassword']="";
 
             }else {
@@ -63,27 +63,27 @@ if (isset($_POST['submit'])){
             Register Here
             </p>
             <div class="input-group">
-                <input type="text" placeholder="FirstName" name="fname" value="<?php echo $fname; ?>" required>
+                <input type="text" placeholder="Firstname" name="fname" value="<?php echo $fname; ?>" required>
             </div>
             <div class="input-group">
-                <input type="text" placeholder="LastName" name="lname" value="<?php echo $lname; ?>" required>
+                <input type="text" placeholder="Lastname" name="lname" value="<?php echo $lname; ?>" required>
             </div>
-            <div class="input-group">
-                <input type="text" placeholder="UserName" name="username" value="<?php echo $username; ?>" required>
-            </div>
+            <!--<div class="input-group">
+                <input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
+            </div> -->
             <div class="input-group">
                 <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+                <input type="password" placeholder="Password" name="passwords" value="<?php echo $_POST['passwords']; ?>" required>
             </div>
             <div class="input-group">
-                <input type="confirm-password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
+                <input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
             </div>
             <div class="input-group">
                 <button name="submit" class="btn"> Register </button>
             </div>
-            <p class="register-text"> Have an account? <a href="index.php">Login Here </a> . </p>
+            <p class="login-register-text"> Have an account? <a href="index.php">Login Here </a> . </p>
         </form>         
     </div>
         
