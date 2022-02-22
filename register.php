@@ -11,7 +11,7 @@ if (isset($_SESSION['username'])){
 if (isset($_POST['submit'])){
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
-    #$username = $_POST['username'];
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $passwords = md5($_POST['passwords']); #md5 will convert password to strings in the database
     $cpassword = md5($_POST['cpassword']);
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])){
                 echo "<script>alert('user registration completed.') </script>";
                 $fname="";
                 $lname="";
-               # $username="";
+                $username="";
                 $email="";
                 $_POST['passwords']="";
                 $_POST['cpassword']="";
@@ -68,9 +68,9 @@ if (isset($_POST['submit'])){
             <div class="input-group">
                 <input type="text" placeholder="Lastname" name="lname" value="<?php echo $lname; ?>" required>
             </div>
-            <!--<div class="input-group">
+            <div class="input-group">
                 <input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
-            </div> -->
+            </div> 
             <div class="input-group">
                 <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
             </div>
